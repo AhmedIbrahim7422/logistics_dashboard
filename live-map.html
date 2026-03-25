@@ -26,7 +26,7 @@
     </script>
 </head>
 <body class="bg-appBg text-gray-800 flex font-sans h-screen w-screen overflow-hidden">
-    <aside id="sidebar" class="bg-darkerTheme text-gray-300 w-64 flex flex-col h-full transition-all duration-300 z-20 flex-shrink-0">
+    <aside id="sidebar" class="bg-darkerTheme text-gray-300 w-64 flex flex-col h-full transition-transform duration-300 z-50 fixed inset-y-0 ltr:left-0 rtl:right-0 transform -translate-x-full rtl:translate-x-full md:relative md:translate-x-0 rtl:md:translate-x-0 flex-shrink-0">
         <div class="h-16 flex items-center px-6 bg-darkTheme border-b border-gray-800">
             <div class="flex items-center gap-3 text-white font-bold text-xl tracking-wide">
                 <i class="fa-solid fa-truck-fast text-brandBlue"></i>
@@ -65,11 +65,12 @@
         </nav>
     </aside>
     <div class="flex-1 flex flex-col h-full min-w-0">
-        <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 z-10 shrink-0">
+        <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 sm:px-6 z-10 shrink-0">
             <div class="flex items-center flex-1 max-w-xl">
-                 <input type="text" data-i18n="search_placeholder" placeholder="Search Tracking ID or Driver..." class="bg-gray-100 border-none text-sm rounded-full px-4 py-2 w-full focus:ring-2 focus:ring-brandBlue outline-none">
+                 <button id="mobileMenuBtn" class="md:hidden mr-4 ltr:mr-4 rtl:ml-4 text-gray-500 hover:text-gray-700 cursor-pointer block"><i class="fa-solid fa-bars text-xl"></i></button>
+                 <input type="text" data-i18n="search_placeholder" placeholder="Search Tracking ID or Driver..." class="bg-gray-100 border-none text-sm rounded-full px-4 py-2 w-full md:w-full focus:ring-2 focus:ring-brandBlue outline-none">
             </div>
-            <div class="flex items-center gap-5 ml-4">
+            <div class="flex items-center gap-3 sm:gap-5 ms-2 sm:ms-4">
                 <button id="langSwitcher" class="text-xs font-bold text-brandBlue hover:text-blue-700 bg-blue-50 px-2 py-1 rounded transition-colors uppercase">Arabic</button>
                 <div class="w-px h-8 bg-gray-200"></div>
                 <img src="https://i.pravatar.cc/150?img=47" alt="User Avatar" class="h-9 w-9 rounded-full object-cover border-2 border-gray-200">

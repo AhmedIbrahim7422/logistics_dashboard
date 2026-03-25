@@ -44,6 +44,32 @@ document.addEventListener('DOMContentLoaded', function() {
     /* ==========================================================================
        UI Event Listeners
        ========================================================================== */
+    // Mobile Menu
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebar = document.getElementById('sidebar');
+
+    if (mobileMenuBtn && sidebar) {
+        const overlay = document.createElement('div');
+        overlay.id = 'mobileOverlay';
+        overlay.className = 'fixed inset-0 bg-black/50 z-40 hidden md:hidden transition-opacity';
+        document.body.appendChild(overlay);
+
+        function toggleMenu() {
+            sidebar.classList.toggle('open-sidebar');
+            overlay.classList.toggle('hidden');
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                sidebar.classList.remove('open-sidebar');
+                overlay.classList.add('hidden');
+            }
+        });
+    }
+
     const langSwitchBtn = document.getElementById('langSwitcher');
     if (langSwitchBtn) {
         langSwitchBtn.addEventListener('click', () => {
@@ -169,29 +195,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     trackingLogTable.innerHTML += `
                         <tr class="hover:bg-gray-50 transition-colors group">
-                            <td class="px-6 py-4 font-medium text-gray-800 group-hover:text-brandBlue transition-colors">
+                            <td class="px-4 py-3 sm:px-6 sm:py-4 font-medium text-gray-800 group-hover:text-brandBlue transition-colors">
                                 <a href="#">${log.id}</a>
                             </td>
-                            <td class="px-6 py-4 text-gray-600">
+                            <td class="px-4 py-3 sm:px-6 sm:py-4 text-gray-600">
                                 <div class="flex items-center gap-2">
                                     <span class="font-medium">${routeSplit[0].trim()}</span>
                                     <i class="fa-solid fa-arrow-right text-gray-300 text-xs"></i>
                                     <span class="font-medium">${routeSplit[1] ? routeSplit[1].trim() : ''}</span>
                                 </div>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-4 py-3 sm:px-6 sm:py-4">
                                 <div class="flex items-center gap-3">
                                     <img src="https://i.pravatar.cc/150?img=${log.driverImg}" alt="Driver" class="w-6 h-6 rounded-full object-cover">
                                     <span class="text-gray-700 font-medium">${log.driver}</span>
                                 </div>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-4 py-3 sm:px-6 sm:py-4">
                                 <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold ${badgeClass} border border-solid">
                                     <span class="w-1.5 h-1.5 rounded-full bg-${log.statusColor}-500 mr-1.5"></span>
                                     ${log.status}
                                 </span>
                             </td>
-                            <td class="px-6 py-4 text-right text-gray-600 font-medium">${log.eta}</td>
+                            <td class="px-4 py-3 sm:px-6 sm:py-4 text-right text-gray-600 font-medium">${log.eta}</td>
                         </tr>
                     `;
                 });
@@ -238,13 +264,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     shipmentsTableBody.innerHTML += `
                         <tr class="hover:bg-gray-50/80 transition-colors">
-                            <td class="px-6 py-4 font-bold text-gray-700">${shp.id}</td>
-                            <td class="px-6 py-4 text-gray-600 font-medium">${shp.destination}</td>
-                            <td class="px-6 py-4 text-gray-500">${shp.weight}</td>
-                            <td class="px-6 py-4">
+                            <td class="px-4 py-3 sm:px-6 sm:py-4 font-bold text-gray-700">${shp.id}</td>
+                            <td class="px-4 py-3 sm:px-6 sm:py-4 text-gray-600 font-medium">${shp.destination}</td>
+                            <td class="px-4 py-3 sm:px-6 sm:py-4 text-gray-500">${shp.weight}</td>
+                            <td class="px-4 py-3 sm:px-6 sm:py-4">
                                 <span class="px-2.5 py-1 ${badgeClass} rounded-full text-[11px] font-bold border border-solid">${shp.status}</span>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-4 py-3 sm:px-6 sm:py-4">
                                 <button class="text-brandBlue font-semibold text-xs hover:underline">Details</button>
                             </td>
                         </tr>

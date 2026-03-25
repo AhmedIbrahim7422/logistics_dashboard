@@ -56,3 +56,29 @@ body {
 [dir="rtl"] .font-sans {
     font-family: 'Cairo', 'Inter', sans-serif !important;
 }
+
+/* Rock-solid Mobile Sidebar Layout Fixes */
+@media (max-width: 767px) {
+    #sidebar {
+        position: fixed !important;
+        inset-inline-start: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 50;
+        transition: transform 0.3s ease;
+        transform: translateX(-100%);
+    }
+    html[dir="rtl"] #sidebar {
+        transform: translateX(100%);
+    }
+    /* When Sidebar is Toggled Open */
+    #sidebar.open-sidebar {
+        transform: translateX(0) !important;
+    }
+}
+@media (min-width: 768px) {
+    #sidebar {
+        position: relative !important;
+        transform: none !important;
+    }
+}
