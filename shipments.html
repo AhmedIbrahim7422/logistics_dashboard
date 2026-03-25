@@ -1,0 +1,110 @@
+<!--
+    NexusTrack - Shipment Management Component
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipments - NexusTrack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        darkTheme: '#111827', darkerTheme: '#030712', appBg: '#f3f4f6',
+                        brandBlue: '#3b82f6', accentOrange: '#f97316', successGreen: '#10b981', dangerRed: '#ef4444'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-appBg text-gray-800 flex font-sans h-screen w-screen overflow-hidden">
+    <aside id="sidebar" class="bg-darkerTheme text-gray-300 w-64 flex flex-col h-full transition-all duration-300 z-20 flex-shrink-0">
+        <div class="h-16 flex items-center px-6 bg-darkTheme border-b border-gray-800">
+            <div class="flex items-center gap-3 text-white font-bold text-xl tracking-wide">
+                <i class="fa-solid fa-truck-fast text-brandBlue"></i>
+                <span data-i18n="logo_text">NexusTrack</span>
+            </div>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-2 relative">
+            <p class="px-2 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2" data-i18n="menu_title">Menu</p>
+            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-gray-800 transition-all">
+                <i class="fa-solid fa-chart-line w-5 text-center"></i>
+                <span class="font-medium" data-i18n="dashboard">Dashboard</span>
+            </a>
+            <a href="live-map.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-gray-800 transition-all">
+                <i class="fa-solid fa-map-location-dot w-5 text-center"></i>
+                <span class="font-medium" data-i18n="live_map">Live Map</span>
+            </a>
+            <a href="fleet-status.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-gray-800 transition-all">
+                <i class="fa-solid fa-truck w-5 text-center"></i>
+                <span class="font-medium" data-i18n="fleet_status">Fleet Status</span>
+            </a>
+            <a href="shipments.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-purple-500 text-white shadow-md shadow-purple-500/20 group transition-all">
+                <i class="fa-solid fa-boxes-stacked w-5 text-center"></i>
+                <span class="font-medium" data-i18n="shipments">Shipments</span>
+            </a>
+            <a href="route-planning.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-gray-800 transition-all">
+                <i class="fa-solid fa-route w-5 text-center"></i>
+                <span class="font-medium" data-i18n="route_planning">Route Planning</span>
+            </a>
+            <a href="alerts.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-gray-800 transition-all justify-between">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-bell w-5 text-center"></i>
+                    <span class="font-medium" data-i18n="alerts">Alerts</span>
+                </div>
+                <span class="bg-dangerRed text-white text-xs font-bold px-2 py-0.5 rounded-full">3</span>
+            </a>
+        </nav>
+    </aside>
+    <div class="flex-1 flex flex-col h-full min-w-0">
+        <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 z-10 shrink-0">
+            <h1 class="text-xl font-bold text-gray-800" data-i18n="shipment_mgmt_title">Shipment Management</h1>
+            <div class="flex items-center gap-4">
+                <button id="langSwitcher" class="text-xs font-bold text-brandBlue hover:text-blue-700 bg-blue-50 px-2 py-1 rounded transition-colors uppercase">Arabic</button>
+                <div class="w-px h-8 bg-gray-200"></div>
+                <button class="bg-brandBlue text-white px-4 py-2 rounded-lg text-sm font-bold shadow-lg shadow-blue-500/20 active:scale-95 transition-all" data-i18n="new_shipment">+ New Shipment</button>
+            </div>
+        </header>
+        <main class="flex-1 overflow-auto p-6">
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="p-4 border-b border-gray-100 flex items-center gap-4">
+                     <div class="relative flex-1 max-w-sm">
+                         <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+                         <input type="text" data-i18n="filter_shipments" placeholder="Filter Shipments..." class="w-full bg-gray-50 border-none text-sm rounded-lg pl-9 pr-4 py-2 outline-none focus:ring-2 focus:ring-purple-400">
+                     </div>
+                     <select class="bg-gray-50 border-none text-sm rounded-lg px-4 py-2 outline-none focus:ring-2 focus:ring-purple-400">
+                        <option data-i18n="all_statuses">All Statuses</option>
+                     </select>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-50 text-[10px] text-gray-400 uppercase tracking-widest font-bold">
+                            <tr>
+                                <th class="px-6 py-4" data-i18n="shipment_id">ID</th>
+                                <th class="px-6 py-4" data-i18n="destination">Destination</th>
+                                <th class="px-6 py-4" data-i18n="weight">Weight</th>
+                                <th class="px-6 py-4" data-i18n="status">Status</th>
+                                <th class="px-6 py-4" data-i18n="shp_actions">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm divide-y divide-gray-50" id="shipmentsTableBody">
+                            <!-- Dynamic Content -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="assets/js/translations.js"></script>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+NexusTrack Template - License Information
+
+Copyright (c) 2026 Ahmed Ibrahim
+
+This template is licensed under the standard ThemeForest Regular/Extended license.
+Usage of this template requires adherence to the following conditions:
+
+- You are allowed to use this template for personal or commercial projects.
+- You are not allowed to resell this template in its original or modified form as a stock product.
+- Redistribution of the source code is strictly prohibited.
+
+Third-Party Assets:
+- Tailwind CSS (MIT License)
+- Chart.js (MIT License)
+- FontAwesome (Free License)
+- Google Fonts (Open Font License)

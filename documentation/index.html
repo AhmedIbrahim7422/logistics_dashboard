@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - NexusTrack Logistics Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #334155; }
+        pre { background: #f8fafc; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; border: 1px solid #e2e8f0; }
+        code { color: #e11d48; font-family: monospace; }
+    </style>
+</head>
+<body class="bg-slate-50">
+    <div class="max-w-4xl mx-auto py-12 px-6 bg-white shadow-xl my-12 rounded-2xl">
+        <header class="border-b border-gray-100 pb-8 mb-8">
+            <h1 class="text-4xl font-extrabold text-slate-900 mb-2">NexusTrack Documentation</h1>
+            <p class="text-slate-500">Premium Logistics & Fleet Management Dashboard Template (v1.0.0)</p>
+        </header>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">1. Introduction</h2>
+            <p>NexusTrack is a modern, responsive, and multi-language logistics dashboard template built for speed and visual excellence. It features a complete RTL support system, interactive charts, and a clean code structure.</p>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">2. Folder Structure</h2>
+            <pre><code>/nexus-track
+  /assets
+    /css
+      styles.css        (Custom Styles)
+    /js
+      script.js          (Core Logic & Charts)
+      translations.js    (i18n Data)
+      data.js            (Mock Backend API)
+  /documentation
+    index.html          (This file)
+  index.html            (Dashboard Home)
+  live-map.html
+  fleet-status.html
+  shipments.html
+  route-planning.html
+  alerts.html.html</code></pre>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">3. Customization</h2>
+            <h3 class="text-xl font-semibold text-slate-700 mb-2">Translations</h3>
+            <p>To add more languages or edit existing text, modify the <code>assets/js/translations.js</code> file. Add a new key to the <code>translations</code> object and update the <code>data-i18n</code> attributes in your HTML.</p>
+            
+            <h3 class="text-xl font-semibold text-slate-700 mb-2 mt-6">Styling</h3>
+            <p>We use <strong>Tailwind CSS via CDN</strong> for rapid development. For production use, we recommend installing Tailwind via NPM and building the assets locally for smaller file sizes.</p>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">4. Backend Integration (API Data)</h2>
+            <p class="mb-4">This template is completely <strong>backend-ready</strong>. All UI components (Charts, KPI Cards, Tables, Live Map tracking, and Fleet vehicle lists) are dynamically generated via JavaScript instead of hardcoded HTML.</p>
+            
+            <h3 class="text-xl font-semibold text-slate-700 mb-2">How it works</h3>
+            <p class="mb-4">We extract dummy data by using a centralized <code>assets/js/data.js</code> file containing a <strong>MockAPI</strong> object. The <code>script.js</code> file then listens to page load events, requests this data asynchronously, and writes standard HTML dynamically inside empty container <code>id</code>s.</p>
+            
+            <h3 class="text-xl font-semibold text-slate-700 mb-2">Connecting to your own database</h3>
+            <p class="mb-4">To hook NexusTrack up to a real backend (Node.js, Laravel, Django, etc.), simply modify the functions in <code>data.js</code> to return your actual REST API calls via <code>fetch</code> or <code>axios</code>. </p>
+            
+            <pre><code>// Inside assets/js/data.js
+const MockAPI = {
+    getDashboardKPIs: async () => {
+        // Replace mock with:
+        // const response = await fetch('/api/v1/kpis');
+        // return await response.json();
+    }
+}</code></pre>
+            <p class="mt-4 text-sm text-slate-500">Note: Ensure your API response JSON mirrors the structure of the mock data provided within <code>data.js</code> so that the DOM rendering algorithms in <code>script.js</code> continue functioning identically.</p>
+        </section>
+
+        <section class="mb-12 border-t border-gray-100 pt-8 text-center text-slate-400 text-sm">
+            &copy; 2026 NexusTrack Template. All rights reserved.
+        </section>
+    </div>
+</body>
+</html>

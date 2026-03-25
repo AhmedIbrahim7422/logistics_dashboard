@@ -1,0 +1,16 @@
+/* Custom Scrollbar for clean UI */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 10px;
+}
+html, body {
+    height: 100vh;
+    overflow: hidden;
+}

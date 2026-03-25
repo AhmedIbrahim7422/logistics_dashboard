@@ -1,0 +1,396 @@
+<!--
+    NexusTrack - Logistics & Fleet Management Dashboard Template
+    Developed by Ahmed Ibrahim
+    Ready for ThemeForest Submission
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Logistics & Fleet tracking</title>
+    <meta name="description"
+        content="NexusTrack - Premium Logistics & Fleet Management Dashboard with Multi-language (LTR/RTL) support. Built with Tailwind CSS and Chart.js.">
+    <meta name="keywords"
+        content="logistics, fleet management, dashboard, admin template, tailwind css, truck tracking, shipments, rtl dashboard">
+    <meta name="author" content="Ahmed Ibrahim">
+
+    <title>NexusTrack - Logistics & Fleet Management Dashboard</title>
+
+    <!-- CSS Assets -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Google Fonts: Inter & Cairo -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cairo:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        darkTheme: '#111827',
+                        darkerTheme: '#030712',
+                        appBg: '#f3f4f6',
+                        brandBlue: '#3b82f6',
+                        accentOrange: '#f97316',
+                        successGreen: '#10b981',
+                        dangerRed: '#ef4444'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-appBg text-gray-800 flex font-sans h-screen w-screen overflow-hidden">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar"
+        class="bg-darkerTheme text-gray-300 w-64 flex flex-col h-full transition-all duration-300 z-20 flex-shrink-0">
+        <!-- Logo -->
+        <div class="h-16 flex items-center px-6 bg-darkTheme border-b border-gray-800">
+            <div class="flex items-center gap-3 text-white font-bold text-xl tracking-wide">
+                <i class="fa-solid fa-truck-fast text-brandBlue"></i>
+                <span id="logo-text" data-i18n="logo_text">NexusTrack</span>
+            </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-2 relative">
+            <p class="px-2 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2" data-i18n="menu_title">
+                Menu</p>
+
+            <a href="index.html"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-brandBlue text-white shadow-md shadow-blue-500/20 group transition-all">
+                <i class="fa-solid fa-chart-line w-5 text-center group-hover:scale-110 transition-transform"></i>
+                <span class="font-medium" data-i18n="dashboard">Dashboard</span>
+            </a>
+
+            <a href="live-map.html"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white group transition-all">
+                <i
+                    class="fa-solid fa-map-location-dot w-5 text-center group-hover:text-brandBlue transition-colors"></i>
+                <span class="font-medium" data-i18n="live_map">Live Map</span>
+            </a>
+
+            <a href="fleet-status.html"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white group transition-all">
+                <i class="fa-solid fa-truck w-5 text-center group-hover:text-successGreen transition-colors"></i>
+                <span class="font-medium" data-i18n="fleet_status">Fleet Status</span>
+            </a>
+
+            <a href="shipments.html"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white group transition-all justify-between">
+                <div class="flex items-center gap-3">
+                    <i
+                        class="fa-solid fa-boxes-stacked w-5 text-center group-hover:text-purple-400 transition-colors"></i>
+                    <span class="font-medium" data-i18n="shipments">Shipments</span>
+                </div>
+            </a>
+
+            <a href="route-planning.html"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white group transition-all">
+                <i class="fa-solid fa-route w-5 text-center group-hover:text-accentOrange transition-colors"></i>
+                <span class="font-medium" data-i18n="route_planning">Route Planning</span>
+            </a>
+
+            <a href="alerts.html"
+                class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white group transition-all justify-between">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-bell w-5 text-center group-hover:text-dangerRed transition-colors"></i>
+                    <span class="font-medium" data-i18n="alerts">Alerts</span>
+                </div>
+                <span
+                    class="bg-dangerRed text-white text-xs font-bold px-2 py-0.5 rounded-full shadow-sm shadow-red-500/30">3</span>
+            </a>
+        </nav>
+
+        <!-- Sidebar Bottom -->
+        <div class="p-4 bg-darkTheme border-t border-gray-800">
+            <a href="#"
+                class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:text-white transition-colors">
+                <i class="fa-solid fa-gear w-5 text-center"></i>
+                <span class="font-medium" data-i18n="settings">Settings</span>
+            </a>
+            <a href="#"
+                class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 hover:text-white transition-colors mt-1">
+                <i class="fa-solid fa-circle-question w-5 text-center"></i>
+                <span class="font-medium" data-i18n="help_center">Help Center</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- CONTENT WRAPPER -->
+    <div class="flex-1 flex flex-col h-full min-w-0">
+
+        <!-- TOP NAVIGATION -->
+        <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 z-10 shrink-0">
+            <!-- Search -->
+            <div class="flex items-center flex-1 max-w-xl">
+                <div class="relative w-full">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <input type="text" placeholder="Search Tracking ID or Driver..."
+                        class="bg-gray-100 border-none text-sm rounded-full pl-10 pr-4 py-2 w-full focus:ring-2 focus:ring-brandBlue focus:bg-white transition-all outline-none">
+                </div>
+            </div>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-5 ml-4">
+                <button class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <i class="fa-solid fa-expand text-lg"></i>
+                </button>
+
+                <!-- Notifications -->
+                <div class="relative cursor-pointer text-gray-400 hover:text-gray-600 transition-colors">
+                    <i class="fa-regular fa-bell text-xl"></i>
+                    <span class="absolute -top-1 -right-1 flex h-4 w-4">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-dangerRed opacity-75"></span>
+                        <span
+                            class="relative inline-flex rounded-full h-4 w-4 bg-dangerRed items-center justify-center text-[9px] font-bold text-white border-2 border-white">3</span>
+                    </span>
+                </div>
+
+                <!-- Divider -->
+                <div class="w-px h-8 bg-gray-200"></div>
+
+                <!-- Language Switcher -->
+                <button id="langSwitcher"
+                    class="text-xs font-bold text-brandBlue hover:text-blue-700 bg-blue-50 px-2 py-1 rounded transition-colors uppercase">
+                    Arabic
+                </button>
+
+                <!-- Divider -->
+                <div class="w-px h-8 bg-gray-200"></div>
+
+                <!-- User Profile -->
+                <div class="flex items-center gap-3 cursor-pointer group">
+                    <div class="text-right hidden sm:block">
+                        <p class="text-sm font-semibold text-gray-700" data-i18n="user_name">Sarah Jenkins</p>
+                        <p class="text-xs text-gray-500" data-i18n="user_role">Fleet Manager</p>
+                    </div>
+                    <img src="https://i.pravatar.cc/150?img=47" alt="User Avatar"
+                        class="h-9 w-9 rounded-full object-cover border-2 border-gray-200 group-hover:border-brandBlue transition-colors">
+                    <i class="fa-solid fa-chevron-down text-xs text-gray-400"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN DASHBOARD CONTENT -->
+        <main class="flex-1 overflow-auto p-6 scroll-smooth">
+
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-800 tracking-tight" data-i18n="dashboard_title">Dashboard
+                        Overview</h1>
+                    <p class="text-sm text-gray-500 mt-1" data-i18n="dashboard_desc">Real-time logistics tracking and
+                        fleet metrics.</p>
+                </div>
+                <!-- Date / Filter button -->
+                <button
+                    class="flex items-center gap-2 bg-white border border-gray-300 text-gray-700 text-sm font-medium px-4 py-2 rounded-lg shadow-sm hover:bg-gray-50 transition-colors">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span data-i18n="last_7_days">Last 7 Days</span>
+                    <i class="fa-solid fa-chevron-down text-xs ml-1"></i>
+                </button>
+            </div>
+
+            <!-- KPI CARDS ROW -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 hover:shadow-md transition-shadow">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500 mb-1" data-i18n="active_shipments">Active
+                                Shipments</p>
+                            <h3 class="text-2xl font-bold text-gray-800" id="kpiActiveShipments">...</h3>
+                        </div>
+                        <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-brandBlue">
+                            <i class="fa-solid fa-boxes-stacked text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center text-sm">
+                        <span
+                            class="text-successGreen font-medium flex items-center gap-1 bg-green-50 px-2 py-0.5 rounded">
+                            <i class="fa-solid fa-arrow-trend-up text-xs"></i> 124
+                        </span>
+                        <span class="text-gray-400 ml-2 text-xs" data-i18n="this_week">this week</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 hover:shadow-md transition-shadow">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500 mb-1" data-i18n="on_time_delivery">On-Time
+                                Delivery</p>
+                            <h3 class="text-2xl font-bold text-gray-800" id="kpiOnTimeDelivery">...</h3>
+                        </div>
+                        <div
+                            class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">
+                            <i class="fa-solid fa-stopwatch text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center text-sm">
+                        <span class="text-dangerRed font-medium flex items-center gap-1 bg-red-50 px-2 py-0.5 rounded">
+                            <i class="fa-solid fa-arrow-trend-down text-xs"></i> 0.8%
+                        </span>
+                        <span class="text-gray-400 ml-2 text-xs truncate" data-i18n="due_to_weather">due to
+                            weather</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 hover:shadow-md transition-shadow">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500 mb-1" data-i18n="fleet_utilization">Fleet
+                                Utilization</p>
+                            <h3 class="text-2xl font-bold text-gray-800" id="kpiFleetUtilization">...</h3>
+                        </div>
+                        <div class="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
+                            <i class="fa-solid fa-truck-moving text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <div class="w-full bg-gray-200 rounded-full h-1.5 mb-1">
+                            <div class="bg-indigo-600 h-1.5 rounded-full" style="width: 87.6%"></div>
+                        </div>
+                        <span class="text-gray-400 text-xs" data-i18n="vehicles_active">Vehicles active</span>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div
+                    class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 hover:shadow-md transition-shadow ring-1 ring-red-100 shadow-red-50">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500 mb-1" data-i18n="critical_alerts">Critical
+                                Alerts</p>
+                            <h3 class="text-2xl font-bold text-dangerRed" id="kpiCriticalAlerts">...</h3>
+                        </div>
+                        <div
+                            class="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center text-dangerRed animate-pulse">
+                            <i class="fa-solid fa-triangle-exclamation text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex flex-col gap-1 text-xs">
+                        <div class="text-gray-600 flex items-center gap-1.5">
+                            <div class="w-1.5 h-1.5 rounded-full bg-dangerRed"></div>
+                            <span>TRK-89420A: Engine Temp High</span>
+                        </div>
+                        <div class="text-gray-600 flex items-center gap-1.5 truncate">
+                            <div class="w-1.5 h-1.5 rounded-full bg-accentOrange"></div>
+                            <span>TRK-10294B: Off Route Deviation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHARTS SECTION -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+
+                <!-- Main Bar/Line Chart (Span 2) -->
+                <div
+                    class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-lg font-bold text-gray-800">Shipment Volume & Transit Time</h2>
+                        <button class="text-gray-400 hover:text-gray-600"><i
+                                class="fa-solid fa-ellipsis-vertical"></i></button>
+                    </div>
+                    <div class="flex-1 w-full min-h-[300px] relative">
+                        <canvas id="shipmentChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Doughnut Chart (Span 1) -->
+                <div
+                    class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-lg font-bold text-gray-800">Current Fleet Status</h2>
+                        <button class="text-gray-400 hover:text-gray-600"><i
+                                class="fa-solid fa-ellipsis-vertical"></i></button>
+                    </div>
+                    <div class="flex-1 w-full relative flex items-center justify-center min-h-[250px]">
+                        <canvas id="fleetStatusChart"></canvas>
+                        <!-- Center text for Doughnut -->
+                        <div
+                            class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none mt-4">
+                            <span class="text-2xl font-bold text-gray-800">210</span>
+                            <span
+                                class="text-xs text-gray-500 font-medium tracking-wide placeholder-gray-500 uppercase">Total</span>
+                        </div>
+                    </div>
+                    <!-- Custom Legend -->
+                    <div class="mt-4 grid grid-cols-2 gap-y-3 gap-x-2 text-xs">
+                        <div class="flex items-center gap-2"><span
+                                class="w-3 h-3 rounded-sm bg-brandBlue shadow-sm"></span><span
+                                class="text-gray-600 font-medium">In Transit (72%)</span></div>
+                        <div class="flex items-center gap-2"><span
+                                class="w-3 h-3 rounded-sm bg-purple-400 shadow-sm"></span><span
+                                class="text-gray-600 font-medium">Loading (15%)</span></div>
+                        <div class="flex items-center gap-2"><span
+                                class="w-3 h-3 rounded-sm bg-gray-300 shadow-sm"></span><span
+                                class="text-gray-600 font-medium">Idle (8%)</span></div>
+                        <div class="flex items-center gap-2"><span
+                                class="w-3 h-3 rounded-sm bg-red-400 shadow-sm"></span><span
+                                class="text-gray-600 font-medium">Maintenance (5%)</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RECENT ACTIVITY TABLE -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow mb-6">
+                <div class="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
+                    <h2 class="text-lg font-bold text-gray-800" data-i18n="track_log_title">Live Tracking Log</h2>
+                    <a href="#" class="text-sm font-medium text-brandBlue hover:text-blue-700 transition-colors"
+                        data-i18n="view_all">View All</a>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider">
+                                <th class="px-6 py-4 font-semibold" data-i18n="tracking_id">Tracking ID</th>
+                                <th class="px-6 py-4 font-semibold" data-i18n="route">Route</th>
+                                <th class="px-6 py-4 font-semibold" data-i18n="driver">Driver</th>
+                                <th class="px-6 py-4 font-semibold" data-i18n="status">Status</th>
+                                <th class="px-6 py-4 font-semibold text-right" data-i18n="eta">ETA</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100 text-sm" id="trackingLogTable">
+                            <!-- Dynamic rows injected by script.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Footer spacing -->
+            <div class="h-6"></div>
+        </main>
+    </div>
+
+    <!-- JS Assets -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/translations.js"></script>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
